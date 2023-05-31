@@ -11,5 +11,7 @@ namespace Assets.Scripts.Interfaces
     {
         public Vector2 GetDirection();
         public Vector2 GetAim();
+
+        public bool isFiring();
     }
 }

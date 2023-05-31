@@ -1,14 +1,21 @@
 ﻿using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-public class Unit: IMove, IDamageable
+public abstract class Unit: MonoBehaviour, IMove, IDamageable
 {
-    Transform _view;
+    protected Transform _view;
     IMove _moveImplementation;
     IDamageable _damageImplementation;
 
     public Unit(Transform view, IMove moveImplementation, IDamageable damageable) 
-    { 
+    {   
+        _view = view;
+        _moveImplementation = moveImplementation;
+        _damageImplementation = damageable;
+    }
+
+    public void init(Transform view, IMove moveImplementation, IDamageable damageable)
+    {
         _view = view;
         _moveImplementation = moveImplementation;
         _damageImplementation = damageable;

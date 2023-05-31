@@ -25,5 +25,10 @@ namespace Assets.Scripts.GeneralClasses
         {
             return new Vector2(Input.GetAxis(Constants.HORIZONTAL_AXIS), Input.GetAxis(Constants.VERTICAL_AXIS));
         }
+
+        public bool isFiring()
+        {
+            return Input.GetButton("Fire1");
+        }
     }
 }
