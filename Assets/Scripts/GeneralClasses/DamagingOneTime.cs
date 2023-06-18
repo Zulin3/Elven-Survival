@@ -1,6 +1,8 @@
-﻿namespace Assets.Scripts.Interfaces
+﻿using Assets.Scripts.Interfaces;
+
+namespace Assets.Scripts.GeneralClasses
 {
-    public class DamagingOneTime : IDamaging
+    internal sealed class DamagingOneTime : IDamaging
     {
         private float _damage;
 

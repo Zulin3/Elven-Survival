@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
+using Assets.Scripts.GeneralClasses;
 
-public interface IEnemyFactory
+namespace Assets.Scripts.Interfaces
 {
-    Enemy Create(Vector3 position);
+    internal interface IEnemyFactory
+    {
+        Enemy Create(Vector3 position);
+    }
+
 }

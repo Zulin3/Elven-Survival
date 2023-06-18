@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    class MoveLinear : IMove
+    internal sealed class MoveLinear : IMove
     {
         private readonly Transform _transform;
         private Vector3 _move;

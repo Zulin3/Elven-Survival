@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    static public class Constants
+    internal static class Constants
     {
         public const string HORIZONTAL_AXIS = "Horizontal";
         public const string VERTICAL_AXIS = "Vertical";

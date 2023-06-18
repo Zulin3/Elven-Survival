@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    internal class Arrow : Projectile, IRotation
+    internal sealed class Arrow : Projectile, IRotation
     {
         private float _speed = 5;
         private float _angle = 0;

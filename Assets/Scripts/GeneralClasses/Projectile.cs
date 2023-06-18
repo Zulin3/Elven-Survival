@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    public abstract class Projectile : MonoBehaviour, IMove, IDamaging
+    internal abstract class Projectile : MonoBehaviour, IMove, IDamaging
     {
         private IMove _moveImplementation;
         private IDamaging _damageImplementation;

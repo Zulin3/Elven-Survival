@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Interfaces
 {
-    public interface IDamaging
+    internal interface IDamaging
     {
         public void DealDamage(IDamageable target);
     }

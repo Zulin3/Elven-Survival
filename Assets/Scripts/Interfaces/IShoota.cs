@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Interfaces
 {
-    public interface IShoota
+    internal interface IShoota
     {
         void Shoot(float now);
         public float Speed { get; set; }

@@ -1,24 +1,27 @@
 ﻿using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-public abstract class Enemy : Unit
+namespace Assets.Scripts.GeneralClasses
 {
-    Transform _target;
-    public Enemy(Transform view, IMove moveImplementation, IDamageable damageable, Transform target) : base(view, moveImplementation, damageable)
+    internal abstract class Enemy : Unit
     {
-    }
-
-    public void SetTarget(Transform target)
-    {
-        _target = target;
-    }
-
-    public void Move(float deltaTime)
-    {
-        if (_target != null && _view != null)
+        Transform _target;
+        public Enemy(Transform view, IMove moveImplementation, IDamageable damageable, Transform target) : base(view, moveImplementation, damageable)
         {
-            Move(_target.position.x - _view.position.x, _target.position.y - _view.position.y, deltaTime);
         }
-    }
 
+        public void SetTarget(Transform target)
+        {
+            _target = target;
+        }
+
+        public void Move(float deltaTime)
+        {
+            if (_target != null && _view != null)
+            {
+                Move(_target.position.x - _view.position.x, _target.position.y - _view.position.y, deltaTime);
+            }
+        }
+
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    class DamageSimple : IDamageable
+    internal sealed class DamageSimple : IDamageable
     {
         private float _health;
         private float _maxHealth;

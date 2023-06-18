@@ -11,7 +11,7 @@ using static Assets.Scripts.GeneralClasses.Constants;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    internal class Shoota: IShoota
+    internal sealed class Shoota: IShoota
     {
         private Transform _view;
         private GameObject _prefab;

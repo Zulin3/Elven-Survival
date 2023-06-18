@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Interfaces
 {
-    public interface IControl
+    internal interface IControl
     {
         public Vector2 GetDirection();
         public Vector2 GetAim();

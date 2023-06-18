@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    class ControlPC : IControl
+    internal sealed class ControlPC : IControl
     {
         public ControlPC()
         {
