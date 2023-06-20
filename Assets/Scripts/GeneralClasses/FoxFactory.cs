@@ -18,10 +18,9 @@ namespace Assets.Scripts.GeneralClasses
 
         public Enemy Create(Vector3 position)
         {
-            var fox = Object.Instantiate(Resources.Load<Fox>("Foxy"), position, Quaternion.identity);
-            fox.init(fox.transform, new MoveLinear(fox.transform, _speed), new DamageSimple(_maxHealth, fox.transform));
-            fox.transform.position = position;
-            fox.SetTarget(_target);
+            var foxObject = Object.Instantiate(Resources.Load<GameObject>("Foxy"), position, Quaternion.identity);
+            foxObject.transform.position = position;
+            Fox fox = new Fox(foxObject.transform, new MoveLinear(foxObject.transform, _speed), new DamageSimple(_maxHealth, foxObject.transform), _target);
             return fox;
         }
     }

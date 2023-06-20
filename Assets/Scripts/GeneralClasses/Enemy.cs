@@ -8,10 +8,6 @@ namespace Assets.Scripts.GeneralClasses
         Transform _target;
         public Enemy(Transform view, IMove moveImplementation, IDamageable damageable, Transform target) : base(view, moveImplementation, damageable)
         {
-        }
-
-        public void SetTarget(Transform target)
-        {
             _target = target;
         }
 

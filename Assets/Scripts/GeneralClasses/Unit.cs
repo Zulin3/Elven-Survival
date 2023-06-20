@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    internal abstract class Unit : MonoBehaviour, IMove, IDamageable
+    internal abstract class Unit: IMove, IDamageable
     {
         protected Transform _view;
         private IMove _moveImplementation;
