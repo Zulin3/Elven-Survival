@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    internal abstract class Projectile : MonoBehaviour, IMove, IDamaging
+    internal abstract class Projectile : IMove, IDamaging
     {
         private IMove _moveImplementation;
         private IDamaging _damageImplementation;
@@ -20,45 +20,28 @@ namespace Assets.Scripts.GeneralClasses
         }
         public IMove MoveImplementation {
             get => _moveImplementation;
-            set => _moveImplementation = value;
+            private set => _moveImplementation = value;
         }
         protected Transform _view;
         private int _collisions;
-        public int Collisions
-        {
-            get => _collisions;
-            set => _collisions = value;
-        }
 
         private ViewServices _viewServices;
-        public ViewServices ViewServices
-        {
-            get => _viewServices;
-            set => _viewServices = value;
-        }
 
         private List<Projectile> _projectileList;
-        public List<Projectile> ProjectileList
-        {
-            get => _projectileList;
-            set => _projectileList = value;
-        }
 
-        public Projectile(IMove moveImplementation = null, IDamaging damageImplementation = null)
+        public Projectile(Transform transform, ViewServices viewServices, List<Projectile> projectileList, IMove moveImplementation, IDamaging damageImplementation, int collisions)
         {
             _view = transform;
             _moveImplementation = moveImplementation;
             _damageImplementation = damageImplementation;
+            _viewServices = viewServices;
+            _projectileList = projectileList;
+            _collisions = collisions;
         }
 
         public void Move(float x, float y, float deltaTime)
         {
             _moveImplementation.Move(x, y, deltaTime);
-        }
-
-        public void OnTriggerEnter2D(Collider2D collision)
-        {
-            DealDamage(collision.gameObject.GetComponent<IDamageable>());
         }
 
         public void DealDamage(IDamageable target)
@@ -68,7 +51,7 @@ namespace Assets.Scripts.GeneralClasses
             if (_collisions <= 0)
             {
                 _projectileList.Remove(this);
-                _viewServices.Destroy(gameObject);
+                _viewServices.Destroy(_view.gameObject);
             }
         }
     }

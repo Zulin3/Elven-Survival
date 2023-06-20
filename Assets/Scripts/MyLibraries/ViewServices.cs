@@ -12,7 +12,7 @@ namespace Assets.Scripts.MyLibraries
         private const int DefaultPoolSize = 10;
         private readonly Dictionary<string, ObjectPool> _viewCache = new Dictionary<string, ObjectPool>(DefaultPoolSize);
 
-        public T Instantiate<T>(GameObject prefab)
+        public T Instantiate<T>(GameObject prefab) where T: class
         {
             if (!_viewCache.TryGetValue(prefab.name, out ObjectPool viewPool))
             {
@@ -20,6 +20,11 @@ namespace Assets.Scripts.MyLibraries
                 _viewCache.Add(prefab.name, viewPool);
             }
 
+            if (typeof(T) == typeof(GameObject))
+            {
+                return viewPool.Pop() as T;
+            }
+            else
             if (viewPool.Pop().TryGetComponent(out T component))
             {
                 return component;

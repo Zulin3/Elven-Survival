@@ -6,6 +6,7 @@ using static Assets.Scripts.GeneralClasses.Constants;
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.MyLibraries;
+using Assets.Scripts.enums;
 
 namespace Assets.Scripts.GeneralClasses
 {
@@ -28,7 +29,7 @@ namespace Assets.Scripts.GeneralClasses
             _enemyList = new List<Enemy>();
             _projectileList = new List<Projectile>();
             _control = new ControlPC();
-            Shoota shoota = new Shoota(_playerView, _projectile, _viewServices, 1, _projectileList);
+            Shoota shoota = new Shoota(_playerView, _projectile, ProjectileType.Arrow, _viewServices, 1, _projectileList);
             shoota.Speed = ARROW_SPEED;
             shoota.Damage = ARROW_DAMAGE;
             _player = new Player(_playerView, new MoveLinear(_playerView, PLAYER_SPEED), _control, new DamageSimple(PLAYER_MAX_HEALTH, _playerView), shoota);

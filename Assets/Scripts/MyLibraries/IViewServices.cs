@@ -9,7 +9,7 @@ namespace Assets.Scripts.MyLibraries
 {
     internal interface IViewServices
     {
-        public T Instantiate<T>(GameObject prefab);
+        public T Instantiate<T>(GameObject prefab) where T: class;
         public void Destroy(GameObject value);
 
     }

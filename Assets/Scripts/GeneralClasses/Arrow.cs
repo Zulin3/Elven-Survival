@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.MyLibraries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace Assets.Scripts.GeneralClasses
     {
         private float _speed = 5;
         private float _angle = 0;
-        public Arrow(float speed): base()
+        public Arrow(Transform view, float speed, int collisions, float damage, Vector2 aim, ViewServices viewServices, List<Projectile> projectileList): base(view, viewServices, projectileList, new MoveLinear(view, speed), new DamagingOneTime(damage), collisions)
         {
-            this.MoveImplementation = new MoveLinear(transform, speed);
+            Rotate(aim);
         }
 
         public void Move(float deltaTime)
@@ -25,7 +26,7 @@ namespace Assets.Scripts.GeneralClasses
         public void Rotate(Vector2 direction)
         {
             _angle = (float)Math.Atan2(direction.y, direction.x);
-            transform.rotation = Quaternion.Euler(0, 0, _angle * 180 / (float)Math.PI);
+            _view.rotation = Quaternion.Euler(0, 0, _angle * 180 / (float)Math.PI);
         }
     }
 }

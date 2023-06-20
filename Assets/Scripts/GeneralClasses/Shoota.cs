@@ -8,6 +8,8 @@ using Assets.Scripts.Interfaces;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using static Assets.Scripts.GeneralClasses.Constants;
+using Assets.Scripts.enums;
+using Assets.Scripts.Exceptions;
 
 namespace Assets.Scripts.GeneralClasses
 {
@@ -22,6 +24,7 @@ namespace Assets.Scripts.GeneralClasses
         private float _speed;
         private Vector2 _aim;
         private float _damage;
+        private ProjectileType _type;
 
         public float Damage
         {
@@ -40,13 +43,14 @@ namespace Assets.Scripts.GeneralClasses
             set => _aim = value; 
         }
 
-        public Shoota(Transform view, GameObject prefab, ViewServices viewServices, float reloadTime, List<Projectile> projectileList)
+        public Shoota(Transform view, GameObject prefab, ProjectileType type, ViewServices viewServices, float reloadTime, List<Projectile> projectileList)
         {
             _view = view;
             _prefab = prefab;
             _viewServices = viewServices;
             _reloadTime = reloadTime;
             _projectileList = projectileList;
+            _type = type;
         }
 
         public void Shoot(float now)
@@ -54,23 +58,20 @@ namespace Assets.Scripts.GeneralClasses
             if (now > _lastShootTime + _reloadTime)
             {
                 _lastShootTime = now;
-                Projectile projectile = _viewServices.Instantiate<Projectile>(_prefab);
-                projectile.transform.position = _view.position;
-                projectile.ViewServices = _viewServices;
-                projectile.ProjectileList = _projectileList;
-                if (projectile is Arrow)
+
+                GameObject projectileObject = _viewServices.Instantiate<GameObject>(_prefab);
+                projectileObject.transform.position = _view.position;
+                Projectile projectile;
+
+                switch (_type)
                 {
-                    projectile.Collisions = ARROW_COLLISIONS;
-                    ((Arrow)projectile).Rotate(_aim);
-                    if (projectile.MoveImplementation == null)
-                    {
-                        projectile.MoveImplementation = new MoveLinear(projectile.transform, _speed);
-                    }
-                    if (projectile.DamageImplementation == null)
-                    {
-                        projectile.DamageImplementation = new DamagingOneTime(_damage);
-                    }
+                    case ProjectileType.Arrow:
+                        projectile = new Arrow(projectileObject.transform, _speed, ARROW_COLLISIONS, _damage, _aim, _viewServices, _projectileList);
+                        break;
+                    default:
+                        throw new InvalidProjectileTypeException();
                 }
+
                 _projectileList.Add(projectile);
             }
         }
