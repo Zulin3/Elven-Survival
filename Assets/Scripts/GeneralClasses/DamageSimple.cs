@@ -33,7 +33,6 @@ namespace Assets.Scripts.GeneralClasses
 
         void Die()
         {
-            Debug.Log(_transform.gameObject);
             UnityEngine.Object.Destroy(_transform.gameObject);
         }
     }

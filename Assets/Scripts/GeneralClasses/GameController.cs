@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.MyLibraries;
 using Assets.Scripts.enums;
+using Assets.Scripts.ScriptableObjects;
 
 namespace Assets.Scripts.GeneralClasses
 {
@@ -20,19 +21,30 @@ namespace Assets.Scripts.GeneralClasses
         private List<Enemy> _enemyList;
         private List<Projectile> _projectileList;
         private IControl _control;
+        private ColliderDictionary<IColliding> _enemyColliders;
+        private ColliderDictionary<IColliding> _projectileColliders;
 
         void Start()
         {
             _viewServices = new ViewServices();
+            _enemyColliders = new ColliderDictionary<IColliding>();
+            _projectileColliders = new ColliderDictionary<IColliding>();
 
-            _enemyFactory = new FoxFactory(_playerView);
+            _enemyFactory = new FoxFactory(_playerView, _enemyColliders, _projectileColliders);
             _enemyList = new List<Enemy>();
             _projectileList = new List<Projectile>();
             _control = new ControlPC();
-            Shoota shoota = new Shoota(_playerView, _projectile, ProjectileType.Arrow, _viewServices, 1, _projectileList);
-            shoota.Speed = ARROW_SPEED;
-            shoota.Damage = ARROW_DAMAGE;
-            _player = new Player(_playerView, new MoveLinear(_playerView, PLAYER_SPEED), _control, new DamageSimple(PLAYER_MAX_HEALTH, _playerView), shoota);
+
+            var arrowData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
+            var playerData = Resources.Load<PlayerData>("ScriptableObjects/PlayerData");
+
+            Shoota shoota = new Shoota(_playerView, _projectile, ProjectileType.Arrow, _viewServices, 1, _projectileList, _projectileColliders);
+            shoota.Speed = arrowData.speed;
+            shoota.Damage = arrowData.damage;
+
+            var playerTouch = new SimpleSphereToucher(_playerView, 1f, Constants.ENEMY_LAYER, _enemyColliders);
+            _player = new Player(_playerView, new MoveLinear(_playerView, playerData.speed), _control, new DamageSimple(playerData.maxHealth, _playerView), playerTouch, shoota);
+            playerTouch.BaseObject = _player;
 
             Fox fox = (Fox)_enemyFactory.Create(new Vector3(2, 2, 0));
             _enemyList.Add(fox);
@@ -66,6 +78,8 @@ namespace Assets.Scripts.GeneralClasses
                 if (projectile is Arrow)
                     ((Arrow)projectile).Move(Time.deltaTime);
             }
+
+
         }
     }
 }

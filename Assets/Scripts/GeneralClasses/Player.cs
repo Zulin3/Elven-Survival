@@ -9,7 +9,7 @@ namespace Assets.Scripts.GeneralClasses
         private IControl _controlImplementation;
         private IShoota _shoota;
 
-        public Player(Transform view, IMove moveImplementation, IControl controlImplementation, IDamageable damageable, IShoota shoota) : base(view, moveImplementation, damageable)
+        public Player(Transform view, IMove moveImplementation, IControl controlImplementation, IDamageable damageable, ITouching touch, IShoota shoota) : base(view, moveImplementation, damageable, touch)
         {
             _controlImplementation = controlImplementation;
             _shoota = shoota;

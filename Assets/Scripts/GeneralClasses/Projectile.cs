@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    internal abstract class Projectile : IMove, IDamaging
+    internal abstract class Projectile : IMove, IDamaging, IColliding
     {
         private IMove _moveImplementation;
         private IDamaging _damageImplementation;
@@ -52,6 +52,14 @@ namespace Assets.Scripts.GeneralClasses
             {
                 _projectileList.Remove(this);
                 _viewServices.Destroy(_view.gameObject);
+            }
+        }
+
+        public void handleCollision(ITouching target)
+        {
+            if (target is IDamageable damageableTarget)
+            {
+                DealDamage(damageableTarget);
             }
         }
     }

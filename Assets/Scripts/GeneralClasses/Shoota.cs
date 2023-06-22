@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using static Assets.Scripts.GeneralClasses.Constants;
 using Assets.Scripts.enums;
 using Assets.Scripts.Exceptions;
+using Assets.Scripts.ScriptableObjects;
 
 namespace Assets.Scripts.GeneralClasses
 {
@@ -25,6 +26,8 @@ namespace Assets.Scripts.GeneralClasses
         private Vector2 _aim;
         private float _damage;
         private ProjectileType _type;
+        private ScriptableObject _projectileData;
+        private ColliderDictionary<IColliding> _projectileColliders;
 
         public float Damage
         {
@@ -43,14 +46,26 @@ namespace Assets.Scripts.GeneralClasses
             set => _aim = value; 
         }
 
-        public Shoota(Transform view, GameObject prefab, ProjectileType type, ViewServices viewServices, float reloadTime, List<Projectile> projectileList)
+        public Shoota(Transform view, GameObject prefab, ProjectileType type, ViewServices viewServices, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
         {
             _view = view;
             _prefab = prefab;
             _viewServices = viewServices;
             _reloadTime = reloadTime;
             _projectileList = projectileList;
+            _projectileColliders = projectileColliders;
             _type = type;
+            switch (_type)
+            {
+                case ProjectileType.Arrow:
+                    var projectileData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
+                    _speed = projectileData.speed;
+                    _damage = projectileData.damage;
+                    _projectileData = projectileData;
+                    break;
+                default:
+                    throw new InvalidProjectileTypeException();
+            }
         }
 
         public void Shoot(float now)
@@ -61,18 +76,24 @@ namespace Assets.Scripts.GeneralClasses
 
                 GameObject projectileObject = _viewServices.Instantiate<GameObject>(_prefab);
                 projectileObject.transform.position = _view.position;
+                Collider projectileCollider = projectileObject.GetComponent<CapsuleCollider>();
                 Projectile projectile;
 
                 switch (_type)
                 {
                     case ProjectileType.Arrow:
-                        projectile = new Arrow(projectileObject.transform, _speed, ARROW_COLLISIONS, _damage, _aim, _viewServices, _projectileList);
+                        projectile = new Arrow(projectileObject.transform, _speed, ((ArrowData)_projectileData).collisions, _damage, _aim, _viewServices, _projectileList);
                         break;
                     default:
                         throw new InvalidProjectileTypeException();
                 }
 
                 _projectileList.Add(projectile);
+                if (_projectileColliders.Contains(projectileCollider))
+                {
+                    _projectileColliders.Remove(projectileCollider);
+                }
+                _projectileColliders.Add(projectileCollider, projectile);
             }
         }
     }
