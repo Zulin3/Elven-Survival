@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b23ba6e132a35a4e835f6fac23d781c, type: 3}
   m_Name: ArrowData
   m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 0e3b0ea0c6a16914ba4f1ef5055eb09b, type: 3}
+  colliderPosition: {x: 1.1, y: 0, z: 0}
+  name: Arrow
+  size: 0.5
+  colliderRadius: 0.15
   speed: 10
   damage: 10
   collisions: 1

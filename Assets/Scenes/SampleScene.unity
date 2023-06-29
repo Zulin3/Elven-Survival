@@ -936,7 +936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerView: {fileID: 1494889774}
-  _projectile: {fileID: 2678541565777366290, guid: 2af388c6cd4af5f44949da1954f6ec9f, type: 3}
 --- !u!4 &1848380730
 Transform:
   m_ObjectHideFlags: 0

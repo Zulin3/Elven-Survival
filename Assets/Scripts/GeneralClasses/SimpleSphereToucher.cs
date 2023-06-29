@@ -19,7 +19,7 @@ namespace Assets.Scripts.GeneralClasses
 
         public override Collider[] GetColliders()
         {
-            Collider[] colliders = Physics.OverlapSphere(_center.position, _radius/*, _layer*/);
+            Collider[] colliders = Physics.OverlapSphere(_center.position, _radius, _layer);
             return colliders;
         }
     }

@@ -46,10 +46,9 @@ namespace Assets.Scripts.GeneralClasses
             set => _aim = value; 
         }
 
-        public Shoota(Transform view, GameObject prefab, ProjectileType type, ViewServices viewServices, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
+        public Shoota(Transform view, ProjectileType type, ViewServices viewServices, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
         {
             _view = view;
-            _prefab = prefab;
             _viewServices = viewServices;
             _reloadTime = reloadTime;
             _projectileList = projectileList;
@@ -62,6 +61,10 @@ namespace Assets.Scripts.GeneralClasses
                     _speed = projectileData.speed;
                     _damage = projectileData.damage;
                     _projectileData = projectileData;
+                    
+                    _prefab = new GameObjectBuilder().Visual().Sprite(projectileData.sprite).Name(projectileData.name).SetSize(projectileData.size).Physics().SphereCollider(projectileData.colliderRadius,projectileData.colliderPosition,true).SetLayer(PROJECTILE_LAYER);
+                    _prefab.transform.SetParent(view);
+                    _prefab.SetActive(false);
                     break;
                 default:
                     throw new InvalidProjectileTypeException();
@@ -76,7 +79,7 @@ namespace Assets.Scripts.GeneralClasses
 
                 GameObject projectileObject = _viewServices.Instantiate<GameObject>(_prefab);
                 projectileObject.transform.position = _view.position;
-                Collider projectileCollider = projectileObject.GetComponent<CapsuleCollider>();
+                Collider projectileCollider = projectileObject.GetComponent<SphereCollider>();
                 Projectile projectile;
 
                 switch (_type)

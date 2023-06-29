@@ -14,7 +14,6 @@ namespace Assets.Scripts.GeneralClasses
     internal sealed class GameController : MonoBehaviour
     {
         [SerializeField] private Transform _playerView;
-        [SerializeField] private GameObject _projectile;
         private ViewServices _viewServices;
         private Player _player;
         private IEnemyFactory _enemyFactory;
@@ -38,7 +37,7 @@ namespace Assets.Scripts.GeneralClasses
             var arrowData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
             var playerData = Resources.Load<PlayerData>("ScriptableObjects/PlayerData");
 
-            Shoota shoota = new Shoota(_playerView, _projectile, ProjectileType.Arrow, _viewServices, 1, _projectileList, _projectileColliders);
+            Shoota shoota = new Shoota(_playerView, ProjectileType.Arrow, _viewServices, 1, _projectileList, _projectileColliders);
             shoota.Speed = arrowData.speed;
             shoota.Damage = arrowData.damage;
 

@@ -11,7 +11,7 @@ namespace Assets.Scripts.GeneralClasses
         public const string HORIZONTAL_AXIS = "Horizontal";
         public const string VERTICAL_AXIS = "Vertical";
 
-        public const string PROJECTILE_LAYER = "Projectile";
-        public const string ENEMY_LAYER = "Enemy";
+        public const string PROJECTILE_LAYER = "Projectiles";
+        public const string ENEMY_LAYER = "Enemies";
     }
 }
