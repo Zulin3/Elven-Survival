@@ -16,6 +16,7 @@ namespace Assets.Scripts.GeneralClasses
         [SerializeField] private Transform _playerView;
         private ViewServices _viewServices;
         private Player _player;
+        private IEnemyFactory _denFactory;
         private IEnemyFactory _enemyFactory;
         private List<Enemy> _enemyList;
         private List<Projectile> _projectileList;
@@ -29,7 +30,6 @@ namespace Assets.Scripts.GeneralClasses
             _enemyColliders = new ColliderDictionary<IColliding>();
             _projectileColliders = new ColliderDictionary<IColliding>();
 
-            _enemyFactory = new FoxFactory(_playerView, _enemyColliders, _projectileColliders);
             _enemyList = new List<Enemy>();
             _projectileList = new List<Projectile>();
             _control = new ControlPC();
@@ -37,7 +37,7 @@ namespace Assets.Scripts.GeneralClasses
             var arrowData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
             var playerData = Resources.Load<PlayerData>("ScriptableObjects/PlayerData");
 
-            Shoota shoota = new Shoota(_playerView, ProjectileType.Arrow, _viewServices, 1, _projectileList, _projectileColliders);
+            Shoota shoota = new Shoota(_playerView, ProjectileType.Arrow, _viewServices, 0.1f, _projectileList, _projectileColliders);
             shoota.Speed = arrowData.speed;
             shoota.Damage = arrowData.damage;
 
@@ -45,22 +45,13 @@ namespace Assets.Scripts.GeneralClasses
             _player = new Player(_playerView, new MoveLinear(_playerView, playerData.speed), _control, new DamageSimple(playerData.maxHealth, _playerView), playerTouch, shoota);
             playerTouch.BaseObject = _player;
 
+            _enemyFactory = new FoxFactory(_playerView, _enemyColliders, _projectileColliders, _enemyList);
             Fox fox = (Fox)_enemyFactory.Create(new Vector3(2, 2, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(-2, 2, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(2, -2, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(-2, -2, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(0, 2, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(2, 0, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(-2, 0, 0));
-            _enemyList.Add(fox);
-            fox = (Fox)_enemyFactory.Create(new Vector3(0, -2, 0));
-            _enemyList.Add(fox);
+            _denFactory = new MonsterDenFactory(_playerView, _enemyColliders, _projectileColliders, fox, _enemyList);
+
+            MonsterDen den = (MonsterDen)_denFactory.Create(new Vector3(4, 4, 0));
+            den.SpawnUnit();
+
         }
 
 

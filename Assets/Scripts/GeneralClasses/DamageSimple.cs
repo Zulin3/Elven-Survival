@@ -15,13 +15,28 @@ namespace Assets.Scripts.GeneralClasses
             _maxHealth = maxHealth;
             _health = maxHealth;
             _transform = transform;
-            _healthBar = _transform.Find("Canvas").Find("HealthBar").GetComponent<Slider>();
-            _healthBar.maxValue = maxHealth;
-            _healthBar.value = maxHealth;
+
+            foreach (Transform childTransform in transform)
+            {
+                if (childTransform.name == "Canvas")
+                {
+                    _healthBar = childTransform.GetChild(0).GetComponent<Slider>();
+                    _healthBar.maxValue = maxHealth;
+                    _healthBar.value = maxHealth;
+                    continue;
+                }
+            }
         }
+
+        public object Clone(Transform newView)
+        {
+            return new DamageSimple(_maxHealth, newView);
+        }
+
         public void TakeDamage(float damage)
         {
             _health -= damage;
+            Debug.Log(_health);
             _healthBar.value = _health;
             if (_health <= 0)
             {

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e405a3dd93097b4fb67e002fabc2b58, type: 3}
-  m_Name: FoxEnemyData
+  m_Script: {fileID: 11500000, guid: 4097e0e7b980a0a43b3bcd8367b63fd1, type: 3}
+  m_Name: MonsterDenData
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 10
-  health: 50
+  health: 500
+  colliderRadius: 1

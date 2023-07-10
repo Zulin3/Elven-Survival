@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    internal sealed class MoveLinear : IMove
+    internal sealed class MoveLinear : IMove, ICloneableMVC
     {
         private readonly Transform _transform;
         private Vector3 _move;
@@ -18,6 +18,11 @@ namespace Assets.Scripts.GeneralClasses
         {
             _transform = transform;
             _speed = speed;
+        }
+
+        public object Clone(Transform newTransform)
+        {
+            return new MoveLinear(newTransform, _speed);
         }
 
         public void Move(float x, float y, float deltaTime)

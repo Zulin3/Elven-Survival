@@ -37,5 +37,13 @@ namespace Assets.Scripts.GeneralClasses
                 }
             }
         }
+
+        public object Clone(Transform newView)
+        {
+            var newToucher = (BaseToucher)MemberwiseClone();
+            newToucher._center = newView;
+            return newToucher;
+            
+        }
     }
 }

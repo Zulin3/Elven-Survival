@@ -1,9 +1,11 @@
 ﻿using Assets.Scripts.Interfaces;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
+    [Serializable] 
     internal abstract class Enemy : Unit
     {
         Transform _target;
@@ -21,7 +23,11 @@ namespace Assets.Scripts.GeneralClasses
             }
         }
 
-
-
+        public override object Clone()
+        {
+            var clonedEnemy = (Enemy) base.Clone();
+            clonedEnemy._target = _target;
+            return clonedEnemy;
+        }
     }
 }
