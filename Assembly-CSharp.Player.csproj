@@ -53,30 +53,52 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Interfaces\IColliding.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\ControlPC.cs" />
+    <Compile Include="Assets\Scripts\enums\ProjectileType.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\BuilderExtensions.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\ArrowData.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IRotation.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\FoxFactory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scripts\MyLibraries\IViewServices.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IDamaging.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\GameObjectBuilder.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\MonsterDenData.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\FoxEnemyData.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\PlayerData.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Player.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\GameObjectPhysicsBuilder.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Arrow.cs" />
+    <Compile Include="Assets\Scripts\Exceptions\InvalidProjectileTypeException.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\MonsterDenFactory.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\DamageSimple.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\GameObjectExtensions.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\BaseToucher.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Shoota.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ICloneableMVC.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\GameObjectVisualBuilder.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\MoveLinear.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IShoota.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ITouching.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Fox.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\ObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMove.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\DamagingOneTime.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\ColliderDictionary.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\GameController.cs" />
     <Compile Include="Assets\Scripts\MyLibraries\ViewServices.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Unit.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IEnemyFactory.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Constants.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IUnitSpawner.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\Enemy.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\MonsterDen.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IControl.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\SimpleSphereToucher.cs" />
     <Compile Include="Assets\Scripts\MyLibraries\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IDamaging.cs" />
-    <Compile Include="Assets\Scripts\GeneralClasses\DamagingOneTime.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\ServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
