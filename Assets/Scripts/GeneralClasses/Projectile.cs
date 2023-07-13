@@ -25,16 +25,13 @@ namespace Assets.Scripts.GeneralClasses
         protected Transform _view;
         private int _collisions;
 
-        private ViewServices _viewServices;
-
         private List<Projectile> _projectileList;
 
-        public Projectile(Transform transform, ViewServices viewServices, List<Projectile> projectileList, IMove moveImplementation, IDamaging damageImplementation, int collisions)
+        public Projectile(Transform transform, List<Projectile> projectileList, IMove moveImplementation, IDamaging damageImplementation, int collisions)
         {
             _view = transform;
             _moveImplementation = moveImplementation;
             _damageImplementation = damageImplementation;
-            _viewServices = viewServices;
             _projectileList = projectileList;
             _collisions = collisions;
         }
@@ -51,7 +48,8 @@ namespace Assets.Scripts.GeneralClasses
             if (_collisions <= 0)
             {
                 _projectileList.Remove(this);
-                _viewServices.Destroy(_view.gameObject);
+                var viewServices = ServiceLocator.Resolve<IViewServices>();
+                viewServices.Destroy(_view.gameObject);
             }
         }
 

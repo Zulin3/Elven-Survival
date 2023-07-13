@@ -36,7 +36,6 @@ namespace Assets.Scripts.GeneralClasses
         public void TakeDamage(float damage)
         {
             _health -= damage;
-            Debug.Log(_health);
             _healthBar.value = _health;
             if (_health <= 0)
             {

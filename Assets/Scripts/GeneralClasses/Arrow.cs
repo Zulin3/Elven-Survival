@@ -12,7 +12,7 @@ namespace Assets.Scripts.GeneralClasses
     internal sealed class Arrow : Projectile, IRotation
     {
         private float _angle = 0;
-        public Arrow(Transform view, float speed, int collisions, float damage, Vector2 aim, ViewServices viewServices, List<Projectile> projectileList): base(view, viewServices, projectileList, new MoveLinear(view, speed), new DamagingOneTime(damage), collisions)
+        public Arrow(Transform view, float speed, int collisions, float damage, Vector2 aim, List<Projectile> projectileList): base(view, projectileList, new MoveLinear(view, speed), new DamagingOneTime(damage), collisions)
         {
             Rotate(aim);
         }

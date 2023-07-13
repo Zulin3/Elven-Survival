@@ -19,7 +19,6 @@ namespace Assets.Scripts.GeneralClasses
         private Transform _view;
         private GameObject _prefab;
         private float _reloadTime;
-        private ViewServices _viewServices;
         private float _lastShootTime;
         private List<Projectile> _projectileList;
         private float _speed;
@@ -46,10 +45,9 @@ namespace Assets.Scripts.GeneralClasses
             set => _aim = value; 
         }
 
-        public Shoota(Transform view, ProjectileType type, ViewServices viewServices, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
+        public Shoota(Transform view, ProjectileType type, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
         {
             _view = view;
-            _viewServices = viewServices;
             _reloadTime = reloadTime;
             _projectileList = projectileList;
             _projectileColliders = projectileColliders;
@@ -77,7 +75,8 @@ namespace Assets.Scripts.GeneralClasses
             {
                 _lastShootTime = now;
 
-                GameObject projectileObject = _viewServices.Instantiate<GameObject>(_prefab);
+                var viewServices = ServiceLocator.Resolve<IViewServices>();
+                GameObject projectileObject = viewServices.Instantiate<GameObject>(_prefab);
                 projectileObject.transform.position = _view.position;
                 Collider projectileCollider = projectileObject.GetComponent<SphereCollider>();
                 Projectile projectile;
@@ -85,7 +84,7 @@ namespace Assets.Scripts.GeneralClasses
                 switch (_type)
                 {
                     case ProjectileType.Arrow:
-                        projectile = new Arrow(projectileObject.transform, _speed, ((ArrowData)_projectileData).collisions, _damage, _aim, _viewServices, _projectileList);
+                        projectile = new Arrow(projectileObject.transform, _speed, ((ArrowData)_projectileData).collisions, _damage, _aim, _projectileList);
                         break;
                     default:
                         throw new InvalidProjectileTypeException();
