@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Interfaces
 {
-    public interface IDamageable
+    internal interface IDamageable: ICloneableMVC
     {
         public void TakeDamage(float damage);
     }

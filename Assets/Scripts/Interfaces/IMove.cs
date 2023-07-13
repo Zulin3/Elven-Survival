@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Interfaces
 {
-    public interface IMove
+    internal interface IMove
     {
         public void Move(float x, float y, float deltaTime);
     }

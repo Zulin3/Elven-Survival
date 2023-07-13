@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    class ControlPC : IControl
+    internal sealed class ControlPC : IControl
     {
         public ControlPC()
         {
@@ -24,6 +24,11 @@ namespace Assets.Scripts.GeneralClasses
         public Vector2 GetDirection()
         {
             return new Vector2(Input.GetAxis(Constants.HORIZONTAL_AXIS), Input.GetAxis(Constants.VERTICAL_AXIS));
+        }
+
+        public bool isFiring()
+        {
+            return Input.GetButton("Fire1");
         }
     }
 }
