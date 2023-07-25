@@ -28,29 +28,14 @@ namespace Assets.Scripts.GeneralClasses
         private ScriptableObject _projectileData;
         private ColliderDictionary<IColliding> _projectileColliders;
 
-        public float Damage
-        {
-            get => _damage;
-            set => _damage = value;
-        }
-
-        public float Speed
-        {
-            get => _speed;
-            set => _speed = value;
-        }
-        public Vector2 Aim 
-        { 
-            get => _aim; 
-            set => _aim = value; 
-        }
-
-        public Shoota(Transform view, ProjectileType type, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
+        public Shoota(Transform view, ProjectileType type, float damage, float speed, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
         {
             _view = view;
             _reloadTime = reloadTime;
             _projectileList = projectileList;
             _projectileColliders = projectileColliders;
+            _damage = damage;
+            _speed = speed;
             _type = type;
             switch (_type)
             {
@@ -97,6 +82,18 @@ namespace Assets.Scripts.GeneralClasses
                 }
                 _projectileColliders.Add(projectileCollider, projectile);
             }
+        }
+
+        public void SetAim(Vector2 aim)
+        {
+            _aim = aim;
+        }
+
+        public void SetWeaponStats(float damage, float speed, float reloadTime)
+        {
+            _damage = damage;
+            _speed = speed;
+            _reloadTime = reloadTime;
         }
     }
 }

@@ -30,5 +30,10 @@ namespace Assets.Scripts.GeneralClasses
         {
             return Input.GetButton("Fire1");
         }
+
+        public bool isWeaponUnlock()
+        {
+            return Input.GetKeyUp(KeyCode.E);
+        }
     }
 }

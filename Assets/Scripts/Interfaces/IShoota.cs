@@ -10,7 +10,7 @@ namespace Assets.Scripts.Interfaces
     internal interface IShoota
     {
         void Shoot(float now);
-        public float Speed { get; set; }
-        public Vector2 Aim { get; set; }
+        void SetAim(Vector2 aim);
+        void SetWeaponStats(float damage, float speed, float reloadTime);
     }
 }

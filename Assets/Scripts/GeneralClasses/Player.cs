@@ -24,7 +24,7 @@ namespace Assets.Scripts.GeneralClasses
         private void Aim()
         {
             Vector2 aim = _controlImplementation.GetAim();
-            _shoota.Aim = aim;
+            _shoota.SetAim(aim);
         }
 
         public void HandleControls(float deltaTime)

@@ -22,6 +22,7 @@ namespace Assets.Scripts.GeneralClasses
         private IControl _control;
         private ColliderDictionary<IColliding> _enemyColliders;
         private ColliderDictionary<IColliding> _projectileColliders;
+        private UnlockShoota _unlockShoota;
 
         void Start()
         {
@@ -36,12 +37,12 @@ namespace Assets.Scripts.GeneralClasses
             var arrowData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
             var playerData = Resources.Load<PlayerData>("ScriptableObjects/PlayerData");
 
-            Shoota shoota = new Shoota(_playerView, ProjectileType.Arrow, 0.1f, _projectileList, _projectileColliders);
-            shoota.Speed = arrowData.speed;
-            shoota.Damage = arrowData.damage;
+            _unlockShoota = new UnlockShoota(false);
+            Shoota shoota = new Shoota(_playerView, ProjectileType.Arrow, arrowData.damage, arrowData.speed, 0.1f, _projectileList, _projectileColliders);
+            IShoota shootaProxy = new ShootaProxy(shoota, _unlockShoota);
 
             var playerTouch = new SimpleSphereToucher(_playerView, 1f, Constants.ENEMY_LAYER, _enemyColliders);
-            _player = new Player(_playerView, new MoveLinear(_playerView, playerData.speed), _control, new DamageSimple(playerData.maxHealth, _playerView), playerTouch, shoota);
+            _player = new Player(_playerView, new MoveLinear(_playerView, playerData.speed), _control, new DamageSimple(playerData.maxHealth, _playerView), playerTouch, shootaProxy);
             playerTouch.BaseObject = _player;
 
             _enemyFactory = new FoxFactory(_playerView, _enemyColliders, _projectileColliders, _enemyList);
@@ -68,7 +69,10 @@ namespace Assets.Scripts.GeneralClasses
                     ((Arrow)projectile).Move(Time.deltaTime);
             }
 
-
+            if (_control.isWeaponUnlock())
+            {
+                _unlockShoota.isUnlock = !_unlockShoota.isUnlock;
+            }
         }
     }
 }
