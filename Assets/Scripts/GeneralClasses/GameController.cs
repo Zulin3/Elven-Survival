@@ -20,6 +20,7 @@ namespace Assets.Scripts.GeneralClasses
         {
             _game = new Game(_playerView);
             _game.InitGame();
+            _game.StartGame();
         }
 
 

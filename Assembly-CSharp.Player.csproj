@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Interfaces\IRotation.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\FoxFactory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\MyLibraries\ServiceLocator.cs" />
     <Compile Include="Assets\Scripts\MyLibraries\IViewServices.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamaging.cs" />
     <Compile Include="Assets\Scripts\MyLibraries\GameObjectBuilder.cs" />
@@ -98,7 +99,18 @@
     <Compile Include="Assets\Scripts\Interfaces\IControl.cs" />
     <Compile Include="Assets\Scripts\GeneralClasses\SimpleSphereToucher.cs" />
     <Compile Include="Assets\Scripts\MyLibraries\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\MyLibraries\ServiceLocator.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\UnlockShoota.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\ShootaProxy.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\Game.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\PlayerInitialization.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\EnemiesInitialization.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\MoveAccelerated.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\Bird.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\BirdEnemyData.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\BirdFactory.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\TrapData.cs" />
+    <Compile Include="Assets\Scripts\GeneralClasses\Trap.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\ProjectileData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

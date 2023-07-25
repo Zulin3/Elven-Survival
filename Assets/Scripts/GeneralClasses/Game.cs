@@ -25,6 +25,7 @@ namespace Assets.Scripts.GeneralClasses
         private ColliderDictionary<IColliding> _projectileColliders;
 
         private UnlockShoota _unlockShoota;
+        private EnemiesInitialization _enemiesInitialization;
 
         public Game(Transform playerView)
         {
@@ -44,7 +45,12 @@ namespace Assets.Scripts.GeneralClasses
             _player = playerInitialization.InitPlayer();
             _unlockShoota = playerInitialization.UnlockShoota;
 
-            var enemiesInitialization = new EnemiesInitialization(_enemyColliders, _projectileColliders, _enemyList, _player);
+            _enemiesInitialization = new EnemiesInitialization(_enemyColliders, _projectileColliders, _enemyList, _player);
+        }
+
+        public void StartGame()
+        {
+            _enemiesInitialization.SpawnEnemies();
         }
 
         public void Update()

@@ -8,6 +8,7 @@ namespace Assets.Scripts.enums
 {
     internal enum ProjectileType
     {
-        Arrow
+        Arrow,
+        Trap
     }
 }

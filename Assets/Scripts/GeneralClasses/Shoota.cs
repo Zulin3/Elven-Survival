@@ -28,24 +28,32 @@ namespace Assets.Scripts.GeneralClasses
         private ScriptableObject _projectileData;
         private ColliderDictionary<IColliding> _projectileColliders;
 
-        public Shoota(Transform view, ProjectileType type, float damage, float speed, float reloadTime, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
+        public Shoota(Transform view, ProjectileType type, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders)
         {
             _view = view;
-            _reloadTime = reloadTime;
             _projectileList = projectileList;
             _projectileColliders = projectileColliders;
-            _damage = damage;
-            _speed = speed;
             _type = type;
             switch (_type)
             {
                 case ProjectileType.Arrow:
-                    var projectileData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
-                    _speed = projectileData.speed;
-                    _damage = projectileData.damage;
-                    _projectileData = projectileData;
+                    var arrowData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
+                    _reloadTime = arrowData.reloadTime;
+                    _speed = arrowData.speed;
+                    _damage = arrowData.damage;
+                    _projectileData = arrowData;
                     
-                    _prefab = new GameObjectBuilder().Visual().Sprite(projectileData.sprite).Name(projectileData.name).SetSize(projectileData.size).Physics().SphereCollider(projectileData.colliderRadius,projectileData.colliderPosition,true).SetLayer(PROJECTILE_LAYER);
+                    _prefab = new GameObjectBuilder().Visual().Sprite(arrowData.sprite).Name(arrowData.name).SetSize(arrowData.size).Physics().SphereCollider(arrowData.colliderRadius,arrowData.colliderPosition,true).SetLayer(PROJECTILE_LAYER);
+                    _prefab.transform.SetParent(view);
+                    _prefab.SetActive(false);
+                    break;
+                case ProjectileType.Trap:
+                    var trapData = Resources.Load<TrapData>("ScriptableObjects/TrapData");
+                    _reloadTime = trapData.reloadTime;
+                    _damage = trapData.damage;
+                    _projectileData = trapData;
+
+                    _prefab = new GameObjectBuilder().Visual().Sprite(trapData.sprite).Name(trapData.name).SetSize(trapData.size).Physics().SphereCollider(trapData.colliderRadius, trapData.colliderPosition, true).SetLayer(PROJECTILE_LAYER);
                     _prefab.transform.SetParent(view);
                     _prefab.SetActive(false);
                     break;
@@ -70,6 +78,9 @@ namespace Assets.Scripts.GeneralClasses
                 {
                     case ProjectileType.Arrow:
                         projectile = new Arrow(projectileObject.transform, _speed, ((ArrowData)_projectileData).collisions, _damage, _aim, _projectileList);
+                        break;
+                    case ProjectileType.Trap:
+                        projectile = new Trap(projectileObject.transform, ((TrapData)_projectileData).collisions, _damage, _projectileList);
                         break;
                     default:
                         throw new InvalidProjectileTypeException();

@@ -8,11 +8,13 @@ namespace Assets.Scripts.GeneralClasses
     {
         private IControl _controlImplementation;
         private IShoota _shoota;
+        private IShoota _secondaryWeapon;
 
-        public Player(Transform view, IMove moveImplementation, IControl controlImplementation, IDamageable damageable, ITouching touch, IShoota shoota) : base(view, moveImplementation, damageable, touch)
+        public Player(Transform view, IMove moveImplementation, IControl controlImplementation, IDamageable damageable, ITouching touch, IShoota shoota, IShoota secondaryWeapon) : base(view, moveImplementation, damageable, touch)
         {
             _controlImplementation = controlImplementation;
             _shoota = shoota;
+            _secondaryWeapon = secondaryWeapon;
         }
 
         private void Move(float deltaTime)
@@ -34,6 +36,10 @@ namespace Assets.Scripts.GeneralClasses
             if (_controlImplementation.isFiring())
             {
                 _shoota.Shoot(Time.time);
+            }
+            if (_controlImplementation.isSecondaryFiring())
+            {
+                _secondaryWeapon.Shoot(Time.time);
             }
         }
     }

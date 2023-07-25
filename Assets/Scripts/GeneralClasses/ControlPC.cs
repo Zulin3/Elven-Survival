@@ -31,6 +31,11 @@ namespace Assets.Scripts.GeneralClasses
             return Input.GetButton("Fire1");
         }
 
+        public bool isSecondaryFiring()
+        {
+            return Input.GetButton("Fire2");
+        }
+
         public bool isWeaponUnlock()
         {
             return Input.GetKeyUp(KeyCode.E);

@@ -12,7 +12,8 @@ namespace Assets.Scripts.GeneralClasses
     internal class EnemiesInitialization
     {
         private IEnemyFactory _denFactory;
-        private IEnemyFactory _enemyFactory;
+        private IEnemyFactory _foxFactory;
+        private IEnemyFactory _birdFactory;
         private ColliderDictionary<IColliding> _enemyColliders;
         private ColliderDictionary<IColliding> _projectileColliders;
         private List<Enemy> _enemyList;
@@ -24,12 +25,19 @@ namespace Assets.Scripts.GeneralClasses
             _enemyList = enemyList;
             _player = player;
 
-            _enemyFactory = new FoxFactory(_player.View, _enemyColliders, _projectileColliders, _enemyList);
-            Fox fox = (Fox)_enemyFactory.Create(new Vector3(2, 2, 0));
-            _denFactory = new MonsterDenFactory(_player.View, _enemyColliders, _projectileColliders, fox, _enemyList);
+            _foxFactory = new FoxFactory(_player.View, _enemyColliders, _projectileColliders, _enemyList);
+            Fox foxTemplate = (Fox)_foxFactory.Create(new Vector3(2, 2, 0));
+            _denFactory = new MonsterDenFactory(_player.View, _enemyColliders, _projectileColliders, foxTemplate, _enemyList);
+            
+            _birdFactory = new BirdFactory(_player.View, _enemyColliders, _projectileColliders, _enemyList);
+        }
 
+        public void SpawnEnemies()
+        {
             MonsterDen den = (MonsterDen)_denFactory.Create(new Vector3(4, 4, 0));
             den.SpawnUnit();
+
+            _birdFactory.Create(new Vector3(-10, -5, 0));
         }
     }
 }
