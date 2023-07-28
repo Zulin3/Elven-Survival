@@ -16,3 +16,4 @@ MonoBehaviour:
   damage: 10
   health: 30
   colliderRadius: 0.3
+  renderLayer: -0.1
