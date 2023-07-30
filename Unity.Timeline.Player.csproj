@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{1042D37E-533E-CEFB-E5FA-6777FE449E06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -125,6 +126,7 @@
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.8\Runtime\Utilities\Extrapolation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Library\PackageCache\com.unity.timeline@1.4.8\Runtime\Unity.Timeline.asmdef" />
   </ItemGroup>
   <ItemGroup>

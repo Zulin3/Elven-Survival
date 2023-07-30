@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{6FCCF3C0-CDD5-4E6B-FA68-C306C517DA7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,6 +60,7 @@
     <Compile Include="Library\PackageCache\com.unity.2d.pixel-perfect@4.0.1\Runtime\PixelPerfectCamera.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Library\PackageCache\com.unity.2d.pixel-perfect@4.0.1\Runtime\Unity.2D.PixelPerfect.asmdef" />
   </ItemGroup>
   <ItemGroup>

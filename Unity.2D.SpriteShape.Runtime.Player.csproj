@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{E259CC33-3A55-D244-00AF-A3F2297A6E99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -73,6 +74,7 @@
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@5.1.4\Runtime\External\LibTessDotNet\MeshUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Library\PackageCache\com.unity.2d.spriteshape@5.1.4\Runtime\External\LibTessDotNet\LICENSE.txt" />
     <None Include="Library\PackageCache\com.unity.2d.spriteshape@5.1.4\Runtime\Unity.2D.SpriteShape.Runtime.asmdef" />
   </ItemGroup>
