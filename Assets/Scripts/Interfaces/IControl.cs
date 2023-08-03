@@ -7,9 +7,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Interfaces
 {
-    public interface IControl
+    internal interface IControl
     {
         public Vector2 GetDirection();
         public Vector2 GetAim();
+
+        public bool isFiring();
+        public bool isSecondaryFiring();
+        public bool isWeaponUnlock();
     }
 }

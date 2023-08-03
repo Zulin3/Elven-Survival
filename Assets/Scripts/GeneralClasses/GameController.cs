@@ -5,20 +5,28 @@ using System.Collections.Generic;
 using static Assets.Scripts.GeneralClasses.Constants;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.MyLibraries;
+using Assets.Scripts.enums;
+using Assets.Scripts.ScriptableObjects;
 
-public class GameController : MonoBehaviour
+namespace Assets.Scripts.GeneralClasses
 {
-    [SerializeField] private Transform playerView;
-    Player _player;
-    
-    void Start()
+    internal sealed class GameController : MonoBehaviour
     {
-        _player = new Player(playerView, new MoveLinear(playerView, PLAYER_SPEED), new ControlPC(), new DamageSimple(PLAYER_MAX_HEALTH, playerView));
-    }
+        [SerializeField] private Transform _playerView;
+        Game _game;
 
-    
-    void Update()
-    {
-        _player.Move(Time.deltaTime);
+        void Start()
+        {
+            _game = new Game(_playerView);
+            _game.InitGame();
+            _game.StartGame();
+        }
+
+
+        void Update()
+        {
+            _game.Update();
+        }
     }
 }

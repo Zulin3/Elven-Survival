@@ -1,0 +1,2 @@
+{ "list": [ { "unit": { "type": "mag", "health": "100" }}, { "unit": { "type": "infantry", "health": "150" }}, { "unit": {
+"type": "mag", "health": "50" } } ] }

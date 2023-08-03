@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.GeneralClasses
 {
-    static public class Constants
+    internal static class Constants
     {
         public const string HORIZONTAL_AXIS = "Horizontal";
         public const string VERTICAL_AXIS = "Vertical";
 
-        public const float PLAYER_SPEED = 5f;
-        public const float PLAYER_MAX_HEALTH = 100f;
+        public const string PROJECTILE_LAYER = "Projectiles";
+        public const string ENEMY_LAYER = "Enemies";
     }
 }
