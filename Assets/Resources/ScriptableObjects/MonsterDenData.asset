@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   colliderRadius: 1
+  spawnDelay: 1

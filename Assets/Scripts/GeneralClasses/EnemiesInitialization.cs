@@ -17,6 +17,7 @@ namespace Assets.Scripts.GeneralClasses
         private ColliderDictionary<IColliding> _projectileColliders;
         private List<Enemy> _enemyList;
         private Player _player;
+        private SpawnHandler _spawnChain;
         public EnemiesInitialization(ColliderDictionary<IColliding> enemyColliders, ColliderDictionary<IColliding> projectileColliders, List<Enemy> enemyList, Player player)
         {
             _enemyColliders = enemyColliders;
@@ -29,14 +30,18 @@ namespace Assets.Scripts.GeneralClasses
             _denFactory = new MonsterDenFactory(_player.View, _enemyColliders, _projectileColliders, foxTemplate, _enemyList);
             
             _birdFactory = new BirdFactory(_player.View, _enemyColliders, _projectileColliders, _enemyList);
+            _spawnChain = new SpawnHandler(_denFactory, 5, new Vector3(4, 4, 0));
+            _spawnChain.SetNext(new SpawnHandler(_denFactory, 5, new Vector3(-4, -4, 0)));
+            _spawnChain.SetNext(new SpawnHandler(_denFactory, 5, new Vector3(4, -4, 0)));
+            _spawnChain.SetNext(new SpawnHandler(_denFactory, 5, new Vector3(-4, 4, 0)));
         }
 
         public void SpawnEnemies()
         {
             MonsterDen den = (MonsterDen)_denFactory.Create(new Vector3(4, 4, 0));
-            den.SpawnUnit();
 
             _birdFactory.Create(new Vector3(-10, -5, 0));
+            _spawnChain.Handle();
         }
     }
 }

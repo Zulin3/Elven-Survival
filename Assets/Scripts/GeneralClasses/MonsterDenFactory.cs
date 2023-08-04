@@ -37,10 +37,12 @@ namespace Assets.Scripts.GeneralClasses
             denObject.transform.position = position;
             var denCollider = denObject.GetComponent<Collider>();
             var toucher = new SimpleSphereToucher(denObject.transform, _monsterDenData.colliderRadius, Constants.PROJECTILE_LAYER, _projectileColliders);
-            MonsterDen den = new MonsterDen(denObject.transform, new MoveLinear(denObject.transform, 0), new DamageSimple(_maxHealth, denObject.transform), _target, toucher, _enemyList);
+            MonsterDen den = new MonsterDen(denObject.transform, new MoveLinear(denObject.transform, 0), new DamageSimple(_maxHealth, denObject.transform), _target, toucher, _enemyList, _monsterDenData.spawnDelay);
             den.EnemyTemplate = _enemyTemplate;
             toucher.BaseObject = den;
             _enemyList.Add(den);
+            Debug.Log("Created den");
+            den.StartSpawning();
             return den;
         }
     }

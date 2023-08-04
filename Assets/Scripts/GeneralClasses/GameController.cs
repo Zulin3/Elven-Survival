@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using static Assets.Scripts.GeneralClasses.Constants;
 using UnityEngine;
-using UnityEngine.UI;
 using Assets.Scripts.MyLibraries;
 using Assets.Scripts.enums;
 using Assets.Scripts.ScriptableObjects;
