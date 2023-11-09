@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace Assets.Scripts.GeneralClasses
         private float _maxHealth;
         private Transform _transform;
         private Slider _healthBar;
+        public event EventHandler OnDeath;
         public DamageSimple(float maxHealth, Transform transform)
         {
             _maxHealth = maxHealth;
@@ -26,6 +28,7 @@ namespace Assets.Scripts.GeneralClasses
                     continue;
                 }
             }
+            
         }
 
         public object Clone(Transform newView)
@@ -41,6 +44,7 @@ namespace Assets.Scripts.GeneralClasses
             {
                 _health = 0;
                 _healthBar.value = _health;
+                OnDeath?.Invoke(this, EventArgs.Empty);
                 Die();
             }
         }

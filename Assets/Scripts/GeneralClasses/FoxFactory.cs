@@ -34,7 +34,7 @@ namespace Assets.Scripts.GeneralClasses
             foxObject.transform.position = position;
             var foxCollider = foxObject.GetComponent<Collider>();
             var toucher = new SimpleSphereToucher(foxObject.transform, _foxEnemyData.colliderRadius, Constants.PROJECTILE_LAYER, _projectileColliders);
-            Fox fox = new Fox(foxObject.transform, new MoveLinear(foxObject.transform, _speed), new DamageSimple(_maxHealth, foxObject.transform), _target, toucher);
+            Fox fox = new Fox(foxObject.transform, new MoveLinear(foxObject.transform, _speed), new DamageSimple(_maxHealth, foxObject.transform), _target, toucher, _foxEnemyData.pointsReward);
             toucher.BaseObject = fox;
             _enemyList.Add(fox);
             //_enemyColliders.Add(foxCollider, fox);

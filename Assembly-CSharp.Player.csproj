@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Decorator\Bullet.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\ShootaProxy.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\ControlPC.cs" />
+     <Compile Include="Assets\Scripts\enums\StateUI.cs" />
      <Compile Include="Assets\Scripts\enums\ProjectileType.cs" />
      <Compile Include="Assets\Scripts\Decorator\Weapon.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ProjectileData.cs" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets\Scripts\MyLibraries\IViewServices.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IDamaging.cs" />
      <Compile Include="Assets\Scripts\MyLibraries\GameObjectBuilder.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\SpawnHandler.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\MonsterDenData.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Game.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Projectile.cs" />
@@ -90,6 +92,7 @@
      <Compile Include="Assets\Scripts\Decorator\ModificationAim.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Shoota.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICloneableMVC.cs" />
+     <Compile Include="Assets\Scripts\enums\EnemiesType.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\UnitFactoryComposition.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\BirdFactory.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\MoveAccelerated.cs" />
@@ -104,6 +107,7 @@
      <Compile Include="Assets\Scripts\MyLibraries\ObjectExtensions.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IMove.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\DamagingOneTime.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\Intepreter.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\ColliderDictionary.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\GameController.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\BirdEnemyData.cs" />
@@ -114,8 +118,8 @@
      <Compile Include="Assets\Scripts\Decorator\IAmmunition.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IEnemyFactory.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\Unit.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IGameHandler.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\CompositionRootJson.cs" />
-     <Compile Include="Assets\Scripts\DictionaryInspect\DictionaryInspectDrawer.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Constants.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IUnitSpawner.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\Mage.cs" />
@@ -123,13 +127,16 @@
      <Compile Include="Assets\Scripts\Decorator\IFire.cs" />
      <Compile Include="Assets\Scripts\Decorator\ModificationMuffler.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Enemy.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\GameHandler.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\MonsterDen.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IControl.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\UnitData.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IPointsService.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\TrapData.cs" />
      <Compile Include="Assets\Scripts\DictionaryInspect\DictionaryInspectAttribute.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\SimpleSphereToucher.cs" />
      <Compile Include="Assets\Scripts\MyLibraries\ObjectPool.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\PointsService.cs" />
      <Compile Include="Assets\Scripts\Decorator\Aim.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/2020.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.dll</HintPath>
@@ -753,6 +760,16 @@
       <Name>Unity.TextMeshPro</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="UniTask.DOTween.csproj">
+      <Project>{DC42CFD2-2436-61A2-DCF0-39C04ED075B6}</Project>
+      <Name>UniTask.DOTween</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Linq.csproj">
+      <Project>{92FC7D05-17E6-7FC8-6DB1-D88657AE23A3}</Project>
+      <Name>UniTask.Linq</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{237D6118-4FE7-0FEB-1EC8-BF2F727E4804}</Project>
       <Name>UnityEngine.UI</Name>
@@ -768,6 +785,11 @@
       <Name>Unity.2D.IK.Runtime</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{66E76FAD-6ED8-2FC2-DA03-1B5D859A0C9B}</Project>
+      <Name>UniTask.TextMeshPro</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Triangle.Runtime.csproj">
       <Project>{47E32E67-1B9F-1504-0519-A934221B7759}</Project>
       <Name>Unity.2D.Animation.Triangle.Runtime</Name>
@@ -781,6 +803,16 @@
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj">
       <Project>{FB2FD781-B2C8-1610-1FF9-63C5255957D8}</Project>
       <Name>Unity.2D.Common.Runtime</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{55302AE8-9F2B-3418-2E25-BE7E082BE49D}</Project>
+      <Name>UniTask</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Addressables.csproj">
+      <Project>{535F71E1-A6DC-6CCD-4314-FBDAC1C40B8D}</Project>
+      <Name>UniTask.Addressables</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj">

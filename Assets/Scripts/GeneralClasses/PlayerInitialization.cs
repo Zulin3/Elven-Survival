@@ -1,12 +1,7 @@
 ﻿using Assets.Scripts.enums;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.ScriptableObjects;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
@@ -22,7 +17,7 @@ namespace Assets.Scripts.GeneralClasses
         private List<Projectile> _projectileList;
         private IControl _control;
 
-        public PlayerInitialization(Transform playerView, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders, ColliderDictionary<IColliding> enemyColliders, IControl control) 
+        public PlayerInitialization(Transform playerView, List<Projectile> projectileList, ColliderDictionary<IColliding> projectileColliders, ColliderDictionary<IColliding> enemyColliders, IControl control)
         {
             _playerView = playerView;
             _projectileColliders = projectileColliders;
@@ -37,7 +32,7 @@ namespace Assets.Scripts.GeneralClasses
         public Player InitPlayer()
         {
             var arrowData = Resources.Load<ArrowData>("ScriptableObjects/ArrowData");
-            _unlockShoota = new UnlockShoota(false);
+            _unlockShoota = new UnlockShoota(true);
             Shoota shoota = new Shoota(_playerView, ProjectileType.Arrow, _projectileList, _projectileColliders);
             _shootaProxy = new ShootaProxy(shoota, _unlockShoota);
 

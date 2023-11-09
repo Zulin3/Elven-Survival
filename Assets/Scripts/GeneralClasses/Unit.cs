@@ -34,6 +34,19 @@ namespace Assets.Scripts.GeneralClasses
             _touchImplementation = touchImplementation;
         }
 
+        public event EventHandler OnDeath
+        {
+            add
+            {
+                _damageImplementation.OnDeath += value;
+            }
+
+            remove
+            {
+                _damageImplementation.OnDeath -= value;
+            }
+        }
+
         public Collider[] GetColliders()
         {
             return _touchImplementation.GetColliders();

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.DictionaryInspect
 {
@@ -38,7 +32,7 @@ namespace Assets.Scripts.DictionaryInspect
 
                     position.y += EditorGUIUtility.singleLineHeight;
                 }
-                
+
                 if (GUI.Button(new Rect(position.x, position.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight), "Add"))
                 {
                     var index = keysProperty.arraySize;

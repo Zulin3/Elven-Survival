@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Decorator\Bullet.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\ShootaProxy.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\ControlPC.cs" />
+     <Compile Include="Assets\Scripts\enums\StateUI.cs" />
      <Compile Include="Assets\Scripts\enums\ProjectileType.cs" />
      <Compile Include="Assets\Scripts\Decorator\Weapon.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ProjectileData.cs" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets\Scripts\MyLibraries\IViewServices.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IDamaging.cs" />
      <Compile Include="Assets\Scripts\MyLibraries\GameObjectBuilder.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\SpawnHandler.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\MonsterDenData.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Game.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Projectile.cs" />
@@ -90,6 +92,7 @@
      <Compile Include="Assets\Scripts\Decorator\ModificationAim.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Shoota.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICloneableMVC.cs" />
+     <Compile Include="Assets\Scripts\enums\EnemiesType.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\UnitFactoryComposition.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\BirdFactory.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\MoveAccelerated.cs" />
@@ -104,6 +107,7 @@
      <Compile Include="Assets\Scripts\MyLibraries\ObjectExtensions.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IMove.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\DamagingOneTime.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\Intepreter.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\ColliderDictionary.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\GameController.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\BirdEnemyData.cs" />
@@ -114,8 +118,8 @@
      <Compile Include="Assets\Scripts\Decorator\IAmmunition.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IEnemyFactory.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\Unit.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IGameHandler.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\CompositionRootJson.cs" />
-     <Compile Include="Assets\Scripts\DictionaryInspect\DictionaryInspectDrawer.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Constants.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IUnitSpawner.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\Mage.cs" />
@@ -123,14 +127,38 @@
      <Compile Include="Assets\Scripts\Decorator\IFire.cs" />
      <Compile Include="Assets\Scripts\Decorator\ModificationMuffler.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\Enemy.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\GameHandler.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\MonsterDen.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IControl.cs" />
      <Compile Include="Assets\Scripts\JSONParsing\UnitData.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IPointsService.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\TrapData.cs" />
      <Compile Include="Assets\Scripts\DictionaryInspect\DictionaryInspectAttribute.cs" />
      <Compile Include="Assets\Scripts\GeneralClasses\SimpleSphereToucher.cs" />
      <Compile Include="Assets\Scripts\MyLibraries\ObjectPool.cs" />
+     <Compile Include="Assets\Scripts\GeneralClasses\PointsService.cs" />
      <Compile Include="Assets\Scripts\Decorator\Aim.cs" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -778,6 +806,11 @@
       <Name>Unity.InternalAPIEditorBridge.001</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="UniTask.DOTween.csproj">
+      <Project>{DC42CFD2-2436-61A2-DCF0-39C04ED075B6}</Project>
+      <Name>UniTask.DOTween</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{E338D071-3F09-5002-2F18-E9B523D9F775}</Project>
       <Name>UnityEditor.UI</Name>
@@ -793,6 +826,11 @@
       <Name>Unity.Rider.Editor</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="UniTask.Linq.csproj">
+      <Project>{92FC7D05-17E6-7FC8-6DB1-D88657AE23A3}</Project>
+      <Name>UniTask.Linq</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{237D6118-4FE7-0FEB-1EC8-BF2F727E4804}</Project>
       <Name>UnityEngine.UI</Name>
@@ -806,6 +844,11 @@
     <ProjectReference Include="Unity.2D.IK.Runtime.csproj">
       <Project>{30B4F8FC-5E5C-5E4C-6060-9D191D5B4C48}</Project>
       <Name>Unity.2D.IK.Runtime</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{66E76FAD-6ED8-2FC2-DA03-1B5D859A0C9B}</Project>
+      <Name>UniTask.TextMeshPro</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Triangle.Runtime.csproj">
@@ -843,9 +886,19 @@
       <Name>Unity.2D.SpriteShape.Editor</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{55302AE8-9F2B-3418-2E25-BE7E082BE49D}</Project>
+      <Name>UniTask</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.Common.Editor.csproj">
       <Project>{5E6DC8CB-6360-9262-0E61-4529F9C59D7A}</Project>
       <Name>Unity.2D.Common.Editor</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Addressables.csproj">
+      <Project>{535F71E1-A6DC-6CCD-4314-FBDAC1C40B8D}</Project>
+      <Name>UniTask.Addressables</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj">
