@@ -10,7 +10,7 @@ namespace Assets.Scripts.GeneralClasses
 {
     internal class Bird : Enemy
     {
-        public Bird(Transform view, IMove moveImplementation, IDamageable damageable, Transform target, SimpleSphereToucher touch) : base(view, moveImplementation, damageable, target, touch)
+        public Bird(Transform view, IMove moveImplementation, IDamageable damageable, Transform target, SimpleSphereToucher touch, int pointsReward) : base(view, moveImplementation, damageable, target, touch, pointsReward)
         {
         }
     }

@@ -8,6 +8,7 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.enums;
 using Assets.Scripts.MyLibraries;
 using Assets.Scripts.ScriptableObjects;
+using TMPro;
 
 namespace Assets.Scripts.GeneralClasses
 {
@@ -25,10 +26,12 @@ namespace Assets.Scripts.GeneralClasses
 
         private UnlockShoota _unlockShoota;
         private EnemiesInitialization _enemiesInitialization;
+        private TextMeshProUGUI _pointsText;
 
-        public Game(Transform playerView)
+        public Game(Transform playerView, TextMeshProUGUI pointsText)
         {
             ServiceLocator.SetService<IViewServices>(new ViewServices());
+            ServiceLocator.SetService<IPointsService>(new PointsService(pointsText));
 
             _enemyColliders = new ColliderDictionary<IColliding>();
             _projectileColliders = new ColliderDictionary<IColliding>();
@@ -36,6 +39,7 @@ namespace Assets.Scripts.GeneralClasses
             _projectileList = new List<Projectile>();
             _control = new ControlPC();
             _playerView = playerView;
+            _pointsText = pointsText;
         }
 
         public void InitGame()
@@ -45,6 +49,9 @@ namespace Assets.Scripts.GeneralClasses
             _unlockShoota = playerInitialization.UnlockShoota;
 
             _enemiesInitialization = new EnemiesInitialization(_enemyColliders, _projectileColliders, _enemyList, _player);
+
+            var points = ServiceLocator.Resolve<IPointsService>();
+            points.ResetPoints();
         }
 
         public void StartGame()
@@ -54,7 +61,6 @@ namespace Assets.Scripts.GeneralClasses
 
         public void Update()
         {
-
             _player.HandleControls(Time.deltaTime);
             foreach (var enemy in _enemyList)
             {

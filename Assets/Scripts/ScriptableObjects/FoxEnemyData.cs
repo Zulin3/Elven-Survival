@@ -9,5 +9,6 @@ namespace Assets.Scripts.ScriptableObjects
         public float damage = 10f;
         public float health = 50f;
         public float colliderRadius = 0.5f;
+        public int pointsReward = 100;
     }
 }

@@ -13,5 +13,6 @@ namespace Assets.Scripts.ScriptableObjects
         public float health = 500f;
         public float colliderRadius = 1f;
         public float spawnDelay = 5f;
+        public int pointsReward = 1000000;
     }
 }

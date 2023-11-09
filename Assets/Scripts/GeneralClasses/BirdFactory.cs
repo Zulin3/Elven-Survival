@@ -36,7 +36,7 @@ namespace Assets.Scripts.GeneralClasses
             birdObject.transform.position = new Vector3(position.x, position.y, _birdEnemyData.renderLayer);
             var birdCollider = birdObject.GetComponent<Collider>();
             var toucher = new SimpleSphereToucher(birdObject.transform, _birdEnemyData.colliderRadius, Constants.PROJECTILE_LAYER, _projectileColliders);
-            Bird bird = new Bird(birdObject.transform, new MoveAccelerated(birdObject.transform, _acceleration), new DamageSimple(_maxHealth, birdObject.transform), _target, toucher);
+            Bird bird = new Bird(birdObject.transform, new MoveAccelerated(birdObject.transform, _acceleration), new DamageSimple(_maxHealth, birdObject.transform), _target, toucher, _birdEnemyData.pointsReward);
             toucher.BaseObject = bird;
             _enemyList.Add(bird);
             //_enemyColliders.Add(birdCollider, bird);

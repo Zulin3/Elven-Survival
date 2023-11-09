@@ -33,12 +33,13 @@ namespace Assets.Scripts.GeneralClasses
 
         public Enemy Create(Vector3 position)
         {
+            Enemy newEnemy = (Enemy) _enemyTemplate.Clone();
             var denObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/MonsterDen"), position, Quaternion.identity);
             denObject.transform.position = position;
             var denCollider = denObject.GetComponent<Collider>();
             var toucher = new SimpleSphereToucher(denObject.transform, _monsterDenData.colliderRadius, Constants.PROJECTILE_LAYER, _projectileColliders);
-            MonsterDen den = new MonsterDen(denObject.transform, new MoveLinear(denObject.transform, 0), new DamageSimple(_maxHealth, denObject.transform), _target, toucher, _enemyList, _monsterDenData.spawnDelay);
-            den.EnemyTemplate = _enemyTemplate;
+            MonsterDen den = new MonsterDen(denObject.transform, new MoveLinear(denObject.transform, 0), new DamageSimple(_maxHealth, denObject.transform), _target, toucher, _enemyList, _monsterDenData.spawnDelay, _monsterDenData.pointsReward);
+            den.EnemyTemplate = newEnemy;
             toucher.BaseObject = den;
             _enemyList.Add(den);
             Debug.Log("Created den");

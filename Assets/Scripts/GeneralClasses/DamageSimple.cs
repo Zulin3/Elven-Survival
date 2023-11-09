@@ -28,6 +28,7 @@ namespace Assets.Scripts.GeneralClasses
                     continue;
                 }
             }
+            
         }
 
         public object Clone(Transform newView)

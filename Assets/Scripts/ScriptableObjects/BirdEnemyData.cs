@@ -16,5 +16,6 @@ namespace Assets.Scripts.ScriptableObjects
         public float health = 30f;
         public float colliderRadius = 0.3f;
         public float renderLayer = -5;
+        public int pointsReward = 1000;
     }
 }

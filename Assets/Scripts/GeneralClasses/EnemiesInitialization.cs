@@ -1,9 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.GeneralClasses
@@ -28,7 +24,8 @@ namespace Assets.Scripts.GeneralClasses
             _foxFactory = new FoxFactory(_player.View, _enemyColliders, _projectileColliders, _enemyList);
             Fox foxTemplate = (Fox)_foxFactory.Create(new Vector3(2, 2, 0));
             _denFactory = new MonsterDenFactory(_player.View, _enemyColliders, _projectileColliders, foxTemplate, _enemyList);
-            
+            foxTemplate.View.gameObject.active = false;
+
             _birdFactory = new BirdFactory(_player.View, _enemyColliders, _projectileColliders, _enemyList);
             _spawnChain = new SpawnHandler(_denFactory, 5, new Vector3(4, 4, 0));
             _spawnChain.SetNext(new SpawnHandler(_denFactory, 5, new Vector3(-4, -4, 0)));
